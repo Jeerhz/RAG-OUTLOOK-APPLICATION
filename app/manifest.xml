@@ -6,11 +6,11 @@
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="ArchimedOutlookAddin"/>
   <Description DefaultValue="Automatic Response to Mail."/>
-  <IconUrl DefaultValue="https://b9ca392a-b125-4725-b402-f1ec9c0304a1-00-1q47m0c0ki86v.spock.replit.dev/assets/icon-64.png"/>
-  <HighResolutionIconUrl DefaultValue="https://b9ca392a-b125-4725-b402-f1ec9c0304a1-00-1q47m0c0ki86v.spock.replit.dev/assets/icon-128.png"/>
+  <IconUrl DefaultValue="https://localhost:3000/assets/icon-64.png"/>
+  <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-128.png"/>
   <SupportUrl DefaultValue="https://www.contoso.com/help"/>
   <AppDomains>
-    <AppDomain>https://b9ca392a-b125-4725-b402-f1ec9c0304a1-00-1q47m0c0ki86v.spock.replit.dev</AppDomain>
+    <AppDomain>https://localhost:3000</AppDomain>
   </AppDomains>
   <Hosts>
     <Host Name="Mailbox"/>
@@ -23,7 +23,7 @@
   <FormSettings>
     <Form xsi:type="ItemRead">
       <DesktopSettings>
-        <SourceLocation DefaultValue="https://b9ca392a-b125-4725-b402-f1ec9c0304a1-00-1q47m0c0ki86v.spock.replit.dev/taskpane.html"/>
+        <SourceLocation DefaultValue="https://localhost:3000/taskpane.html"/>
         <RequestedHeight>250</RequestedHeight>
       </DesktopSettings>
     </Form>
@@ -70,13 +70,13 @@
     </Hosts>
     <Resources>
       <bt:Images>
-        <bt:Image id="Icon.16x16" DefaultValue="https://b9ca392a-b125-4725-b402-f1ec9c0304a1-00-1q47m0c0ki86v.spock.replit.dev/assets/icon-16.png"/>
-        <bt:Image id="Icon.32x32" DefaultValue="https://b9ca392a-b125-4725-b402-f1ec9c0304a1-00-1q47m0c0ki86v.spock.replit.dev/assets/icon-32.png"/>
-        <bt:Image id="Icon.80x80" DefaultValue="https://b9ca392a-b125-4725-b402-f1ec9c0304a1-00-1q47m0c0ki86v.spock.replit.dev/assets/icon-80.png"/>
+        <bt:Image id="Icon.16x16" DefaultValue="https://localhost:3000/assets/icon-16.png"/>
+        <bt:Image id="Icon.32x32" DefaultValue="https://localhost:3000/assets/icon-32.png"/>
+        <bt:Image id="Icon.80x80" DefaultValue="https://localhost:3000/assets/icon-80.png"/>
       </bt:Images>
       <bt:Urls>
-        <bt:Url id="Commands.Url" DefaultValue="https://b9ca392a-b125-4725-b402-f1ec9c0304a1-00-1q47m0c0ki86v.spock.replit.dev/commands.html"/>
-        <bt:Url id="Taskpane.Url" DefaultValue="https://b9ca392a-b125-4725-b402-f1ec9c0304a1-00-1q47m0c0ki86v.spock.replit.dev/taskpane.html"/>
+        <bt:Url id="Commands.Url" DefaultValue="https://localhost:3000/commands.html"/>
+        <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/taskpane.html"/>
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="GroupLabel" DefaultValue="Simple Add-in"/>
@@ -88,5 +88,3 @@
     </Resources>
   </VersionOverrides>
 </OfficeApp>
-
-
