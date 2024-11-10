@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+  <head>
+    <title>ARCHIMED Outlook Add-in</title>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    <script src="taskpane.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .button {
+        background-color: #0078d7; /* Blue */
+        border: none;
+        color: white;
+        padding: 10px 24px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 12px;
+      }
+      .button:hover {
+        background-color: #005a9e;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="conciseButton" class="button">Concise Reply</button>
+    <button id="standardButton" class="button">Standard Reply</button>
+    <button id="detailedButton" class="button">Detailed Reply</button>
+  </body>
+</html>
