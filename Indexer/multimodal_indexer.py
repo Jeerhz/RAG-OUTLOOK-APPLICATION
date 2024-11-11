@@ -17,9 +17,7 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 # Constants
-BASE_PATH = "C:\\Users\\adles\\OneDrive\\Bureau\\RAG_ArchiMed\\Documents\\2024"
-PDF_FILENAME = "Contribution76d0320c-a92d-445e-84aa-0e38d5657c49.pdf"
-PDF_PATH = os.path.join(BASE_PATH, PDF_FILENAME)
+BASE_PATH = "C:\\Users\\adles\\OneDrive\\Bureau\\RAG-OUTLOOK-APPLICATION\\Documents\\IR"
 
 # Environment variables
 OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
