@@ -1,5 +1,4 @@
-require('dotenv').config(); // Load environment variables
-console.log( "taskpane.js script loaded" );
+console.log("taskpane.js script loaded");
 
 document.addEventListener("DOMContentLoaded", (event) => {
   console.log("DOM fully loaded and parsed");
@@ -42,9 +41,7 @@ if (typeof Office !== "undefined") {
 
             // Appeler l'API ChatGPT pour générer une réponse
             const reply = await callChatGPT(originalMessage, replyType);
-            console.log(
-              `${replyType.charAt(0).toUpperCase() + replyType.slice(1)} Reply: ${reply}`,
-            );
+            console.log(`${replyType.charAt(0).toUpperCase() + replyType.slice(1)} Reply: ${reply}`);
 
             // Construire la réponse
             const replyBody = `<p>${reply}</p>`;
@@ -54,67 +51,37 @@ if (typeof Office !== "undefined") {
               htmlBody: replyBody,
             });
           } else {
-            console.error(
-              "Failed to get the message body: " + result.error.message,
-            );
+            console.error("Failed to get the message body: " + result.error.message);
           }
         });
       }
 
       async function callChatGPT(message, replyType) {
-        const apiKey = process.env.OPENAI_API_KEY; // Remplacez par votre clé API OpenAI
-        const apiUrl = "https://api.openai.com/v1/chat/completions";
-        let prompt;
+        try {
+          const response = await fetch("http://localhost:5000/api/chat", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              message: message,
+              replyType: replyType,
+            }),
+          });
 
-        switch (replyType) {
-          case "concise":
-            prompt = `Generate a concise reply to the following message:\n\n${message}`;
-            break;
-          case "standard":
-            prompt = `Generate a standard reply to the following message:\n\n${message}`;
-            break;
-          case "detailed":
-            prompt = `Generate a detailed reply to the following message:\n\n${message}`;
-            break;
-          default:
-            prompt = message;
-        }
-
-        const response = await fetch(apiUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${apiKey}`,
-          },
-          body: JSON.stringify({
-            model: "gpt-3.5-turbo",
-            messages: [
-              {
-                role: "system",
-                content: "You are a helpful assistant.",
-              },
-              {
-                role: "user",
-                content: prompt,
-              },
-            ],
-            max_tokens: 150,
-            temperature: 0.5,
-          }),
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          return data.choices[0].message.content.trim();
-        } else {
-          const errorData = await response.json();
-          console.error(
-            "Failed to call OpenAI API: " + response.statusText,
-            errorData,
-          );
+          if (response.ok) {
+            const reply = await response.text();
+            return reply;
+          } else {
+            console.error("Failed to call backend API: " + response.statusText);
+            return "Error generating reply.";
+          }
+        } catch (error) {
+          console.error("Failed to call backend API: " + error);
           return "Error generating reply.";
         }
       }
+
     } else {
       console.log("Non-Outlook host detected");
     }

@@ -15,12 +15,16 @@
     "webpack-dev-server": "^5.0.4"
   },
   "dependencies": {
+    "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.1",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "fs": "^0.0.1-security",
     "openai": "^4.52.3",
     "os-browserify": "^0.3.0",
-    "path-browserify": "^1.0.1"
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0",
+    "vm-browserify": "^1.1.2"
   }
 }
