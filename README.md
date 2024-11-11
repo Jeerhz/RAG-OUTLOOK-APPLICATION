@@ -1,5 +1,4 @@
-# RAG-OUTLOOK-APPLICATION
-
+# RAG-OUTLOOK-APPLICATION (Express.js)
 Outlook Application that reads mails and writes a response based on retrieved context
 
 to run the application, go to the backend folder and run the server with the following script:
