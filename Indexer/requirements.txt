@@ -30,6 +30,7 @@ jsonpatch
 jsonpointer
 langchain-core
 langchain-openai
+langchain-experimental
 langsmith
 looseversion
 lxml
