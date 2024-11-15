@@ -22,14 +22,14 @@ module.exports = {
       directory: path.join(__dirname, "src"),
     },
     compress: true,
-    port: 3000,
+    port: 3000, // Change this if the port is already in use
     hot: true,
     allowedHosts: "all",
     server: {
       type: "https",
       options: {
-        key: fs.readFileSync("C:\\Users\\adles\\.office-addin-dev-certs\\localhost.key"),
-        cert: fs.readFileSync("C:\\Users\\adles\\.office-addin-dev-certs\\localhost.crt"),
+        key: fs.readFileSync("/Users/adle/.office-addin-dev-certs/localhost.key"),
+        cert: fs.readFileSync("/Users/adle/.office-addin-dev-certs/localhost.crt"),
       }
     },
   },

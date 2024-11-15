@@ -296,7 +296,6 @@ dist
 
 # Files in Documents folder
 Documents/*
-*.pdf
 *.doc
 *.docx
 *.xlsx
@@ -306,5 +305,9 @@ Documents/*
 *.ipynb
 
 query.txt
+.replit
+.python-version
+
 
 converter_pdf_to_image.py
+
