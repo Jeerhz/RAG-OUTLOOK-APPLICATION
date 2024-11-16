@@ -92,7 +92,7 @@ console.log("taskpane.js script loaded");
 
   async function callChatGPT(mail_content, replyType) {
     try {
-      const response = await fetch("https://localhost:5551/api/chat", {
+      const response = await fetch("http://localhost:5551/api/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
