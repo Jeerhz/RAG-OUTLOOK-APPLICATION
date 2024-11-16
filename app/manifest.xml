@@ -11,6 +11,16 @@
   <SupportUrl DefaultValue="https://www.contoso.com/help"/>
   <AppDomains>
     <AppDomain>https://localhost:3000</AppDomain>
+    <AppDomain>https://js.monitor.azure.com</AppDomain>
+    <AppDomain>https://res.office365.com</AppDomain>
+    <AppDomain>https://fluidpreview.office.net</AppDomain>
+    <AppDomain>https://cdn.office.net</AppDomain>
+    <AppDomain>https://df.onecdn.static.microsoft</AppDomain>
+    <AppDomain>https://public.onecdn.static.microsoft</AppDomain>
+    <AppDomain>https://static.teams.microsoft.com</AppDomain>
+    <AppDomain>https://teams.microsoft.com</AppDomain>
+    <AppDomain>https://cdn.forms.office.net</AppDomain>
+    <AppDomain>https://*.yammer.com</AppDomain>
   </AppDomains>
   <Hosts>
     <Host Name="Mailbox"/>
@@ -79,7 +89,7 @@
         <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/taskpane.html"/>
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="GroupLabel" DefaultValue="ARCHIMED RAG Add-in"/>
+        <bt:String id="GroupLabel" DefaultValue="Outlook RAG Add-in"/>
         <bt:String id="TaskpaneButton.Label" DefaultValue="Show Taskpane"/>
       </bt:ShortStrings>
       <bt:LongStrings>
