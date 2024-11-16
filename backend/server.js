@@ -41,13 +41,13 @@ async function generateEmbedding(text) {
 }
 
 app.post("/api/chat", async (req, res) => {
-  const { message: query } = req.body;
+  const { message: mail_text } = req.body;
 
   try {
     const db = client.db("your_database_name");
     const collection = db.collection("embedded_documents");
 
-    const queryVector = await generateEmbedding(query);
+    const queryVector = await generateEmbedding(mail_text);
     console.log("Query embedding generated");
 
     console.log("Constructing MongoDB aggregation pipeline");
@@ -251,8 +251,6 @@ You are an AI assistant tasked with answering mails based on the provided contex
 Context:
 ${contextText}
 
-User Query: ${query}
-
 Write an email to provide a comprehensive answer to the user's query using the given context.
 
 At the end of your response, list the sources used in the following format including the page numbers:
@@ -264,19 +262,16 @@ Answer:`;
 
     // Call GPT-4
     console.log("Calling Generation Model");
-    try {
-      const completion = await openai.chat.completions.create({
-        model: "gpt-4o",
-        messages: [
-          { role: "system", content: "You are a helpful assistant." },
-          { role: "user", content: prompt },
-        ],
-        max_tokens: 1000,
-        temperature: 0.7,
-      });
-    } catch (error) {
-        console.error("Failed to connect to call Generative Model:", error);
-      }
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o",
+      messages: [
+        { role: "system", content: `${prompt}` },
+        { role: "user", content: `Mail that need an answer:${mail_text}` },
+      ],
+      max_tokens: 1000,
+      temperature: 0.7,
+    });
+    
 
     const answer = completion.choices[0].message.content.trim();
 
@@ -286,7 +281,7 @@ Answer:`;
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({ error: "Internal server error:" + error });
   }
 });
 

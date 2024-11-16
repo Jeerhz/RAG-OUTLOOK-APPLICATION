@@ -99,7 +99,7 @@ node server.js
 Expected output:
 
 ```
-Server running on port 12121
+Server running on port 5551
 Connected to MongoDB
 ```
 
