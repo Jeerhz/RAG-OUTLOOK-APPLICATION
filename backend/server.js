@@ -14,30 +14,46 @@ let client;
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 async function connectToMongoDB() {
-  client = new MongoClient(process.env.MONGODB_URL);
-  await client.connect();
-  console.log("Connected to MongoDB");
+  try {
+    client = new MongoClient(process.env.MONGODB_URL);
+    await client.connect();
+    console.log("Connected to MongoDB");
+  } catch (error) {
+    console.error("Failed to connect to MongoDB:", error);
+  }
 }
 
 connectToMongoDB();
 
 async function generateEmbedding(text) {
-  const response = await openai.embeddings.create({
-    model: "text-embedding-3-small",
-    input: text,
-  });
-  return response.data[0].embedding;
+  console.log("Generating embedding for text:", text);
+  try {
+    const response = await openai.embeddings.create({
+      model: "text-embedding-3-small",
+      input: text,
+    });
+    console.log("Embedding generated successfully");
+    return response.data[0].embedding;
+  } catch (error) {
+    console.error("Failed to generate embedding:", error);
+    throw error;
+  }
 }
 
 app.post("/api/chat", async (req, res) => {
   const { message: query } = req.body;
+  console.log("Received chat request with message:", query);
 
   try {
+
     const db = client.db("your_database_name");
     const collection = db.collection("embedded_documents");
 
+    console.log("Generating embedding for user query");
     const queryVector = await generateEmbedding(query);
+    console.log("Query embedding generated:", queryVector);
 
+    console.log("Constructing MongoDB aggregation pipeline");
     const pipeline = [
       {
         $vectorSearch: {
@@ -211,7 +227,14 @@ app.post("/api/chat", async (req, res) => {
   }
     ];
 
+    console.log("Executing aggregation pipeline");
     const results = await collection.aggregate(pipeline).toArray();
+    console.log("Aggregation results:", results);
+
+    if (!results.length) {
+      console.warn("No results found in the aggregation");
+      return res.status(404).json({ error: "No relevant documents found" });
+    }
 
     // Process the results
     let contextText = "";
@@ -219,6 +242,7 @@ app.post("/api/chat", async (req, res) => {
     let sources = new Set();
 
     results.forEach((doc, index) => {
+      console.log(`Processing document ${index + 1}`, doc);
       contextText += `[${index + 1}] ${doc.content}\n\n`;
       if (doc.is_image && doc.image) {
         images.push({
@@ -227,10 +251,11 @@ app.post("/api/chat", async (req, res) => {
           page_number: doc.page_number
         });
       }
-      sources.add(`${doc.metadata.filename} (Page ${doc.metadata.page_number})`);
+      sources.add(`${doc.filename} (Page ${doc.page_number})`);
     });
 
     // Create the prompt for GPT-4
+    console.log("Creating prompt for GPT-4");
     const prompt = `
 You are an AI assistant tasked with answering mails based on the provided context. You work for AchiMed an investment fund specialized in medical companies. Use the following information to answer the following mail:
 
@@ -248,7 +273,10 @@ ${Array.from(sources).join('\n')}
 
 Answer:`;
 
+    console.log("Prompt created:", prompt);
+
     // Call GPT-4
+    console.log("Calling GPT-4 API");
     const completion = await openai.chat.completions.create({
       model: "gpt-4o",
       messages: [
@@ -259,14 +287,16 @@ Answer:`;
       temperature: 0.7,
     });
 
+    console.log("GPT-4 API response received");
     const answer = completion.choices[0].message.content.trim();
+    console.log("Generated answer:", answer);
 
     res.json({
       answer: answer,
       images: images
     });
   } catch (error) {
-    console.error(error);
+    console.error("Error processing chat request:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 });
