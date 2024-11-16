@@ -9,6 +9,7 @@ An Outlook application that reads emails and writes responses based on retrieved
 - **Python**: Version `3.12.6` is recommended.
   - Known Issue: Python `3.13.0` causes dependency errors on MacOS.
 - **Node.js & npm**: [Download and install Node.js and npm](https://nodejs.org/en/download/package-manager).
+- The Outlook Desktop Application
 
 ---
 
