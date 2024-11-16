@@ -28,8 +28,8 @@ module.exports = {
     server: {
       type: "https",
       options: {
-        key: fs.readFileSync("/Users/adle/.office-addin-dev-certs/localhost.key"),
-        cert: fs.readFileSync("/Users/adle/.office-addin-dev-certs/localhost.crt"),
+        key: fs.readFileSync("C:\\Users\\adles\\.office-addin-dev-certs\\localhost.key"),
+        cert: fs.readFileSync("C:\\Users\\adles\\.office-addin-dev-certs\\localhost.crt"),
       }
     },
   },
