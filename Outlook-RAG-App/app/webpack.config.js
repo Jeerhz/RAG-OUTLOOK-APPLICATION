@@ -20,15 +20,18 @@ module.exports = {
   },
   devServer: {
     static: {
-      directory: path.join(__dirname, "app/src"),
+      directory: path.join(__dirname, "/src"),
     },
     compress: true,
     port: 3000,
     hot: true,
-    allowedHosts: "all",
-    https: {
-      key: fs.readFileSync(path.join(os.homedir(), ".office-addin-dev-certs", "localhost.key")),
-      cert: fs.readFileSync(path.join(os.homedir(), ".office-addin-dev-certs", "localhost.crt")),
+     allowedHosts: "all",
+    server: {
+      type: "https",
+      options: {
+        key: fs.readFileSync("C:/Users/adles/.office-addin-dev-certs/localhost.key"),
+        cert: fs.readFileSync("C:/Users/adles/.office-addin-dev-certs/localhost.crt"),
+      }
     },
   },
   output: {
