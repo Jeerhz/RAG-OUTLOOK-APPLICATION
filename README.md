@@ -4,6 +4,11 @@ An Outlook application that reads emails and writes responses based on retrieved
 
 ---
 
+## Demo
+
+You can find here a link to a demo video of the application !
+[Watch the video](/Ressources/Demo-Outlook-App.mp4)
+
 ## **Known issues**
 
 - Python 3.13 can create python dependencies conflict when using the code in the Indexer folder.
