@@ -273,7 +273,7 @@ app.post("/api/chat", async (req, res) => {
     }
 
     // Create the prompt for GPT-4
-    const prompt = `You are an AI assistant responsible for crafting email responses based on the given context. You represent AchiMed, an investment fund specializing in medical companies. Using the information provided, compose a detailed and professional reply to the following email query.
+    const prompt = `You are an AI assistant responsible for crafting email responses based on the given context. Using the information provided, compose a detailed and professional reply to the following email query.
 
 Context:
 ${contextText}
