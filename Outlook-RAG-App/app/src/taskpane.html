@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Outlook RAG App</title>
+        <script src="http://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+        <script src="./taskpane.js" defer></script>
+        <script src="http://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="./taskpane.css" />
+    </head>
+    <body class="bg-white font-sans text-gray-900">
+        <div class="max-w-sm mx-auto p-8 mt-16 shadow-lg rounded-lg bg-gray-50">
+            <h1 class="text-3xl font-semibold text-center mb-8">
+                Outlook RAG App
+            </h1>
+            <div
+                id="loading"
+                class="text-center text-lg font-medium text-blue-600 hidden mb-4"
+            >
+                Loading...
+            </div>
+            <div id="error" class="text-center text-red-600 hidden mb-4">
+                Error occurred!
+            </div>
+            <div class="flex flex-col items-center space-y-4">
+                <!-- Concise Reply -->
+                <button
+                    id="conciseButton"
+                    class="action-button w-full h-12 relative inline-flex items-center justify-center overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800"
+                >
+                    <span
+                        class="relative w-full h-full flex items-center justify-center transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
+                    >
+                        Concise Reply
+                    </span>
+                </button>
+
+                <!-- Standard Reply -->
+                <button
+                    id="standardButton"
+                    class="action-button w-full h-12 relative inline-flex items-center justify-center overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 dark:text-white hover:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
+                >
+                    <span
+                        class="relative w-full h-full flex items-center justify-center transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
+                    >
+                        Standard Reply
+                    </span>
+                </button>
+
+                <!-- Detailed Reply -->
+                <button
+                    id="detailedButton"
+                    class="action-button w-full h-12 relative inline-flex items-center justify-center overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 dark:text-white hover:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
+                >
+                    <span
+                        class="relative w-full h-full flex items-center justify-center transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
+                    >
+                        Detailed Reply
+                    </span>
+                </button>
+            </div>
+            <!-- Loader -->
+            <div id="loader" class="hidden">
+                <div class="spinner"></div>
+                <p>Generating reply, please wait...</p>
+            </div>
+        </div>
+    </body>
+</html>
